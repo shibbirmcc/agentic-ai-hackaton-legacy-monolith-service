@@ -73,7 +73,7 @@ public class OrderServiceTest {
             new Order()
         );
         
-        when(orderRepository.findByUserId(1L)).thenReturn(orders);
+        when(orderRepository.findByUser_Id(1L)).thenReturn(orders);
         
         List<Order> result = orderService.getOrdersByUserId(1L);
         

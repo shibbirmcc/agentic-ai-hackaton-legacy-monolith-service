@@ -13,7 +13,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     
     Order findByOrderNumber(String orderNumber);
     
-    List<Order> findByUserId(Long userId);
+    List<Order> findByUser_Id(Long userId);
     
     List<Order> findByOrderStatus(String orderStatus);
     
