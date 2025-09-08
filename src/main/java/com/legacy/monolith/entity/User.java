@@ -1,5 +1,6 @@
 package com.legacy.monolith.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ public class User {
     private String status;
     
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Order> orders;
     
     public User() {

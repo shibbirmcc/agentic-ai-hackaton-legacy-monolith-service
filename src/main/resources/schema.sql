@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users;
 
 -- Users table with legacy design
 CREATE TABLE users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100),
     full_name VARCHAR(100),
@@ -16,7 +16,7 @@ CREATE TABLE users (
 
 -- Orders table with legacy foreign key
 CREATE TABLE orders (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     order_number VARCHAR(50) NOT NULL,
     user_id BIGINT,
     product_name VARCHAR(200),

@@ -1,5 +1,6 @@
 package com.legacy.monolith.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,6 +18,7 @@ public class Order {
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
     
     @Column(name = "product_name", length = 200)

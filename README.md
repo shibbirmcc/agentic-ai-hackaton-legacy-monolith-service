@@ -26,24 +26,24 @@ The service will start on `http://localhost:8080` with H2 in-memory database.
 
 1. Start dependencies:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 2. Run the application:
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 ## Building and Testing
 
 Build without tests:
 ```bash
-mvn -q -DskipTests package
+./mvnw -q -DskipTests package
 ```
 
 Run tests with coverage:
 ```bash
-mvn test
+./mvnw test
 ```
 
 Coverage report: `target/site/jacoco/index.html`
@@ -126,9 +126,17 @@ Create Order:
 
 ## Database Schema
 
-The application uses `schema.sql` and `data.sql` for database initialization. Tables:
+The application uses `schema.sql` and `data.sql` for database initialization. PostgreSQL-compatible schema with BIGSERIAL auto-increment columns:
 - `users` - User information
 - `orders` - Order details with foreign key to users
+
+**Note**: Schema has been fixed to use PostgreSQL syntax (`BIGSERIAL`) instead of MySQL (`AUTO_INCREMENT`).
+
+## Recent Fixes Applied
+
+- ✅ **PostgreSQL Compatibility**: Fixed schema to use `BIGSERIAL` instead of MySQL `AUTO_INCREMENT`
+- ✅ **JSON Circular References**: Added Jackson annotations (`@JsonManagedReference`/`@JsonBackReference`) to prevent infinite loops in User-Order relationships
+- ✅ **Application Startup**: Fixed database initialization issues and verified all endpoints are functional
 
 ## RabbitMQ Integration
 
