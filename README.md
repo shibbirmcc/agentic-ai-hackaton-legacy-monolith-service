@@ -10,8 +10,7 @@ A legacy Spring Boot 1.5 monolithic service managing Users and Orders with Rabbi
 - Spring AMQP (RabbitMQ)
 - H2 Database (default) / PostgreSQL
 - Maven
-- JaCoCo for test coverage (~60%)
-- 
+- JaCoCo for test coverage (~60%)   
 
 ## Running Locally
 
