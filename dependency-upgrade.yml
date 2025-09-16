@@ -1,0 +1,45 @@
+name: legacy-monolith-dependency-upgrade
+
+description: "Dependency upgrade configuration for Legacy Monolith Service migration from Spring Boot 1.5 to Spring Boot 3.x with Java 17/21 support"
+
+dependencyManagement:
+  
+  dependencies:
+    
+    # Spring Boot Parent - Major version upgrade
+    - identifier: "org.springframework.boot:spring-boot-starter-parent"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+    
+    # Spring Boot Starters - Will be managed by parent version
+    - identifier: "org.springframework.boot:spring-boot-starter-web"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+      
+    - identifier: "org.springframework.boot:spring-boot-starter-data-jpa"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+      
+    - identifier: "org.springframework.boot:spring-boot-starter-amqp"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+      
+    - identifier: "org.springframework.boot:spring-boot-starter-actuator"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+      
+    - identifier: "org.springframework.boot:spring-boot-starter-test"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+
+  plugins:
+    
+    # Spring Boot Maven Plugin
+    - identifier: "org.springframework.boot:spring-boot-maven-plugin"
+      targetVersion: "3.2.0"
+      originType: "THIRD_PARTY"
+      
+    # Maven Compiler Plugin - Updated for Java 17/21
+    - identifier: "org.apache.maven.plugins:maven-compiler-plugin"
+      targetVersion: "3.12.1"
+      originType: "THIRD_PARTY"
