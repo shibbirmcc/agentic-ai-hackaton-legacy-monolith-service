@@ -2,21 +2,22 @@ package com.legacy.monolith.service;
 
 import com.legacy.monolith.entity.User;
 import com.legacy.monolith.repository.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     
     @Mock
@@ -43,14 +44,16 @@ public class UserServiceTest {
         verify(userRepository, times(1)).save(any(User.class));
     }
     
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testCreateUserWithExistingUsername() {
+        assertThrows(RuntimeException.class, () -> {
         User existingUser = new User("existinguser", "existing@example.com", "Existing User");
         User newUser = new User("existinguser", "new@example.com", "New User");
         
         when(userRepository.findByUsername("existinguser")).thenReturn(existingUser);
         
         userService.createUser(newUser);
+        });
     }
     
     @Test
@@ -58,7 +61,7 @@ public class UserServiceTest {
         User user = new User("testuser", "test@example.com", "Test User");
         user.setId(1L);
         
-        when(userRepository.findOne(1L)).thenReturn(user);
+        when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
         
         User result = userService.getUserById(1L);
         

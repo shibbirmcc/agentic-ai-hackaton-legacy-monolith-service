@@ -41,10 +41,8 @@ public class OrderService {
         }
         
         if (userId != null) {
-            User user = userRepository.findOne(userId);
-            if (user == null) {
-                throw new RuntimeException("User not found");
-            }
+            User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
             order.setUser(user);
         }
         
@@ -81,11 +79,8 @@ public class OrderService {
     }
     
     public Order getOrderById(Long id) {
-        Order order = orderRepository.findOne(id);
-        if (order == null) {
-            throw new RuntimeException("Order not found with id: " + id);
-        }
-        return order;
+        return orderRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
     }
     
     public List<Order> getOrdersByUserId(Long userId) {
@@ -105,7 +100,7 @@ public class OrderService {
     private String generateOrderNumber() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         String year = sdf.format(new Date());
-        return "ORD-" + year + "-" + String.format("%05d", orderCounter++);
+        return "ORD-" + year + "-" + "%05d".formatted(orderCounter++);
     }
     
     private void sendOrderCreatedMessage(Order order) {

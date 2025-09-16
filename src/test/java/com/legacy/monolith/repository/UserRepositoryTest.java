@@ -1,13 +1,11 @@
 package com.legacy.monolith.repository;
 
 import com.legacy.monolith.entity.User;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 // @RunWith(SpringRunner.class)
 // @DataJpaTest
@@ -24,7 +22,7 @@ public class UserRepositoryTest {
         User savedUser = userRepository.save(user);
         assertNotNull(savedUser.getId());
         
-        User foundUser = userRepository.findOne(savedUser.getId());
+        User foundUser = userRepository.findById(savedUser.getId()).orElse(null);
         assertNotNull(foundUser);
         assertEquals("testuser", foundUser.getUsername());
     }
