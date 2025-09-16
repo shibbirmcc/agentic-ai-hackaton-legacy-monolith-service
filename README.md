@@ -147,4 +147,4 @@ Orders are published to:
 
 ## Notes
 
-This is a deliberately legacy implementation showcasing common patterns and issues found in older enterprise Java applications. It serves as a baseline for modernization efforts.
+This is a deliberately legacy implementation showcasing common patterns and issues found in older enterprise Java applications. It serves as a baseline for modernization efforts. 
