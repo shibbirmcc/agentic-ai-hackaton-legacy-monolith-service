@@ -11,6 +11,7 @@ A legacy Spring Boot 1.5 monolithic service managing Users and Orders with Rabbi
 - H2 Database (default) / PostgreSQL
 - Maven
 - JaCoCo for test coverage (~60%)
+- 
 
 ## Running Locally
 
